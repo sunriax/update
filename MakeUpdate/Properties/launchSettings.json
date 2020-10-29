@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MakeUpdate": {
+      "commandName": "Project",
+      "commandLineArgs": "UpdateLib.json TemplateUpdateModelLib.json -b -s \"Text 1\" -i 1234 -d 1234,1234"
+    }
+  }
+}

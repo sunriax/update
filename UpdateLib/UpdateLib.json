@@ -1,0 +1,8 @@
+{
+  "ReflectionConfig": [
+    {
+      "ReflectionPath": "Model",
+      "FileSpecifier": "*UpdateModelLib.dll"
+    }
+  ]
+}

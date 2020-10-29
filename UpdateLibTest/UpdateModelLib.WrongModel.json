@@ -1,0 +1,14 @@
+{
+  "UpdateConfig": {
+    "Model": "Wrong",
+    "SkipBeforeUpdate": false,
+    "SkipUpdate": false,
+    "SkipAfterUpdate": false
+  },
+  "ReflectionConfig": [
+    {
+      "ReflectionPath": "Marshaler",
+      "FileSpecifier": "*MarshalerLib.dll"
+    }
+  ]
+}

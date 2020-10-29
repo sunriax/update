@@ -1,0 +1,8 @@
+{
+  "UpdateConfig": {
+    "Model": "Template",
+    "SkipBeforeUpdate": false,
+    "SkipUpdate": false,
+    "SkipAfterUpdate": false
+  }
+}

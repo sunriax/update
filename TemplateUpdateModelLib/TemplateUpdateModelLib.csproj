@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    
+    <IsPackable>false</IsPackable>
+    <IsPublishable>false</IsPublishable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UpdateModelLib\UpdateModelLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="TemplateResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TemplateResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Update="TemplateResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TemplateResource.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CustomToolNamespace>RaGae.UpdateLib.TemplateUpdateModelLib.Resource</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <CompiledFiles Include="$(TargetPath)" />
+  </ItemGroup>
+  
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Copy SourceFiles="@(CompiledFiles)" DestinationFolder="$(SolutionDir)MakeUpdate\Model" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

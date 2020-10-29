@@ -1,0 +1,15 @@
+{
+  "UpdateConfig": {
+    "Model": "Template",
+    "SkipBeforeUpdate": false,
+    "SkipUpdate": true,
+    "SkipAfterUpdate": false
+  },
+  "ReflectionConfig": [
+    {
+      "ReflectionPath": "Wrong",
+      "FileSpecifier": "*MarshalerLib.dll"
+    }
+  ]
+}
+

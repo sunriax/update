@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    
+    <IsPackable>false</IsPackable>
+    <IsPublishable>false</IsPublishable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.msbuild" Version="2.9.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="1.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateUpdateModelLib\TemplateUpdateModelLib.csproj" />
+    <ProjectReference Include="..\UpdateLib\UpdateLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpdateConfigurationFile Include="$(SolutionDir)UpdateLib\UpdateLib.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ApplicationTestFile Include="$(ProjectDir)*.json" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <TemplateModelConfigurationFile Include="$(SolutionDir)TemplateUpdateModelLib\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TemplateModelEmptyModelConfigurationFile Include="$(SolutionDir)TemplateUpdateModelLibTest\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MarshalerFiles Include="$(SolutionDir)MakeUpdate\Marshaler\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ModelFiles Include="$(SolutionDir)MakeUpdate\Model\*" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Copy SourceFiles="@(UpdateConfigurationFile)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(ApplicationTestFile)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="@(TemplateModelConfigurationFile)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(TemplateModelEmptyModelConfigurationFile)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(MarshalerFiles)" DestinationFolder="$(TargetDir)Marshaler" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(ModelFiles)" DestinationFolder="$(TargetDir)Model" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

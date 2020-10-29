@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    
+    <IsPackable>false</IsPackable>
+    <IsPublishable>false</IsPublishable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UpdateLib\UpdateLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpdateConfigurationFile Include="$(SolutionDir)UpdateLib\UpdateLib.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TemplateModelConfigurationFile Include="$(SolutionDir)TemplateUpdateModelLib\TemplateUpdateModelLib.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MarshalerFiles Include="$(ProjectDir)Marshaler\*" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ModelFiles Include="$(ProjectDir)Model\*" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Copy SourceFiles="@(UpdateConfigurationFile)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(TemplateModelConfigurationFile)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(MarshalerFiles)" DestinationFolder="$(TargetDir)Marshaler" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(ModelFiles)" DestinationFolder="$(TargetDir)Model" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

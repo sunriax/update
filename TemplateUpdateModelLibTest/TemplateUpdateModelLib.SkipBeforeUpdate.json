@@ -1,0 +1,84 @@
+{
+  "UpdateConfig": {
+    "Model": "Template",
+    "SkipBeforeUpdate": true,
+    "SkipUpdate": false,
+    "SkipAfterUpdate": false
+  },
+  "ReflectionConfig": [
+    {
+      "ReflectionPath": "Marshaler",
+      "FileSpecifier": "*MarshalerLib.dll"
+    }
+  ],
+  "ArgumentConfig": {
+    "Schema": [
+      {
+        "Argument": [
+          "S",
+          "StRiNg"
+        ],
+        "Marshaler": "*",
+        "Required": true
+      },
+      {
+        "Argument": [
+          "s2",
+          "string2"
+        ],
+        "Marshaler": "*",
+        "Required": false
+      },
+      {
+        "Argument": [
+          "I",
+          "InT"
+        ],
+        "Marshaler": "#",
+        "Required": true
+      },
+      {
+        "Argument": [
+          "i2",
+          "int2"
+        ],
+        "Marshaler": "#",
+        "Required": false
+      },
+      {
+        "Argument": [
+          "D",
+          "DoUbLe"
+        ],
+        "Marshaler": "##",
+        "Required": true
+      },
+      {
+        "Argument": [
+          "d2",
+          "double2"
+        ],
+        "Marshaler": "##",
+        "Required": false
+      },
+      {
+        "Argument": [
+          "B",
+          "BoOlEaN"
+        ],
+        "Marshaler": "",
+        "Required": true
+      },
+      {
+        "Argument": [
+          "b2",
+          "boolean2"
+        ],
+        "Marshaler": "",
+        "Required": false
+      }
+    ],
+    "Delimiter": "-:/"
+  }
+}
+

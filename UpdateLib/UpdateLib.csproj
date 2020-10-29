@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>RaGae</RootNamespace>
+    <AssemblyName>RaGae.$(MSBuildProjectName)</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <Title>$(MSBuildProjectName)</Title>
+    <Authors>G.Raf</Authors>
+    <Company>G.Raf^engineering</Company>
+    <Copyright>(c) 2020 G.Raf</Copyright>
+    <PackageProjectUrl>https://github.com/sunriax/update</PackageProjectUrl>
+    <PackageTags>update, dynamic, console, ragae, sunriax, 0x007E</PackageTags>
+    <Version>1.0.1</Version>
+    <Description>Tool to Update Software, Libraries, Files from different Sources that are implemented by user. The update class can easily be extended, without recompiling the whole library.</Description>
+    <PackageId>RaGae.Update</PackageId>
+    <RepositoryUrl>https://github.com/sunriax/update.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes></PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RaGae.Bootstrap" Version="0.1.0" />
+    <PackageReference Include="RaGae.Reflection" Version="1.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UpdateModelLib\UpdateModelLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="UpdateResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UpdateResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="UpdateResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UpdateResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>RaGae.UpdateLib.Resource</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ApplicationConfigurationFile Include="$(ProjectDir)*.json" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Copy SourceFiles="@(ApplicationConfigurationFile)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+  </Target>
+</Project>
